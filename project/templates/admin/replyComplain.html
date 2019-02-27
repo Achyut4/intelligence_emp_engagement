@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Upbond - Responsive Admin Dashboard Template</title>
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="ThemeDesign" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="../../static/adminResources/images/favicon.ico">
+
+        <!-- DataTables -->
+        <link href="../../static/adminResources/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/adminResources/css/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/adminResources/css/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/adminResources/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/adminResources/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../static/adminResources/css/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/adminResources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
+
+    <title>View Role</title>
+</head>
+<body class="fixed-left">
+            <div id="wrapper">
+                {%include "admin/header.html"%}
+                {%include "admin/menu.html"%}
+<!--display department table data in table form-->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="">
+                        <div class="page-header-title">
+                            <h4 class="page-title">Reply Complain</h4>
+                        </div>
+                    </div>
+                    <div class=""></div>
+                        <div class="wrapper-page">
+                            <div class="panel panel-color panel-primary panel-pages">
+                                <div class="panel-body">
+                                    <h3 class="text-center m-t-0 m-b-15">
+                                        <a href="index.html" class="logo logo-admin"><img src="../../static/adminResources/images/logo_dark.png" height="28" alt="logo"></a>
+                                    </h3>
+                                    <h4 class="text-muted text-center m-t-0"><b>Complain Data</b></h4>
+                                    <form class="form-horizontal m-t-20" action="/insertReplyComplain" method="POST">
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <input class="form-control" type="hidden" name="ComplainId" value="{{ complainDict[0].complainId }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <input type="text" class="form-control" readonly type="text" name="ComplainSubject" value="{{ complainDict[0].complainSubject }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <textarea class="form-control"  readonly name="ComplainDescription" placeholder="{{ complainDict[0].complainDescription }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <textarea class="form-control"  type="text" name="ComplainReply" cols="10" placeholder="Enter Reply"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center m-t-40">
+                                            <div class="col-xs-12">
+                                                <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" name="ReplyComplainSubmit" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% include "admin/footer.html" %}
+        <script src="../../static/adminResources/js/jquery.min.js"></script>
+        <script src="../../static/adminResources/js/bootstrap.min.js"></script>
+        <script src="../../static/adminResources/js/modernizr.min.js"></script>
+        <script src="../../static/adminResources/js/detect.js"></script>
+        <script src="../../static/adminResources/js/fastclick.js"></script>
+        <script src="../../static/adminResources/js/jquery.slimscroll.js"></script>
+        <script src="../../static/adminResources/js/jquery.blockUI.js"></script>
+        <script src="../../static/adminResources/js/waves.js"></script>
+        <script src="../../static/adminResources/js/wow.min.js"></script>
+        <script src="../../static/adminResources/js/jquery.nicescroll.js"></script>
+        <script src="../../static/adminResources/js/jquery.scrollTo.min.js"></script>
+
+        <!-- Datatables-->
+        <script src="../../static/adminResources/js/jquery.dataTables.min.js"></script>
+        <script src="../../static/adminResources/js/dataTables.bootstrap.js"></script>
+        <script src="../../static/adminResources/js/dataTables.buttons.min.js"></script>
+        <script src="../../static/adminResources/js/buttons.bootstrap.min.js"></script>
+        <script src="../../static/adminResources/js/jszip.min.js"></script>
+        <script src="../../static/adminResources/js/pdfmake.min.js"></script>
+        <script src="../../project/static/adminResources/js/vfs_fonts.js"></script>
+        <script src="../../static/adminResources/js/buttons.html5.min.js"></script>
+        <script src="../../static/adminResources/js/buttons.print.min.js"></script>
+        <script src="../../static/adminResources/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../../static/adminResources/js/dataTables.keyTable.min.js"></script>
+        <script src="../../static/adminResources/js/dataTables.responsive.min.js"></script>
+        <script src="../../static/adminResources/js/responsive.bootstrap.min.js"></script>
+        <script src="../../static/adminResources/js/dataTables.scroller.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="../../static/adminResources/js/datatables.init.js"></script>
+
+        <script src="../../static/adminResources/js/app.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </body>
+</html>

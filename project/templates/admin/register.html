@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Upbond - Responsive Admin Dashboard Template</title>
+    <meta content="Admin Dashboard" name="description"/>
+    <meta content="ThemeDesign" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link rel="shortcut icon" href="adminResources/images/favicon.ico">
+
+    <link href="../../static/adminResources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Begin page -->
+<div class="page-content-wrapper"></div>
+<div class="wrapper-page">
+    <div class="panel panel-color panel-primary panel-pages">
+
+        <div class="panel-body">
+            <h3 class="text-center m-t-0 m-b-15">
+                <a href="index.html" class="logo logo-admin"><img src="../../static/adminResources/images/logo_dark.png"
+                                                                  height="28" alt="logo"></a>
+            </h3>
+            <h4 class="text-muted text-center m-t-0"><b>Register</b></h4>
+
+            <form class="form-horizontal m-t-20" method="POST" action="http://localhost:5000/insertRegister">
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" autocomplete="off" required="" name="RegisterFirstName"
+                               placeholder="Firstname" value="{{ registererrorFirstName }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" required="" autocomplete="off" name="RegisterLastName"
+                               placeholder="Lastname" value="{{ registererrorLastName }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" required="" autocomplete="off" name="RegisterContact"
+                               placeholder="Contact No" value="{{ registererrorContact }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="email" required="" autocomplete="off" name="RegisterEmail"
+                               placeholder="Email" value="{{ registererrorEmail }}">
+                    </div>
+                    <div>
+                            {{ registerErrorEmail  }}
+                        </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        Gender:-&nbsp &nbsp
+                        Male<input type="radio" required="" name="RegisterGender" placeholder="" value="Male"
+                    >
+                        &nbsp &nbsp &nbsp Female<input type="radio" required="" name="RegisterGender" placeholder=""
+                                                       value="Female"
+                    >
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea class="form-control" type="textarea" cols="10" required="" name="RegisterAddress"
+                                  placeholder="Address"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <label>
+                            <select class="form-control" name="RegisterDepartment">
+                                <option value="Default" name="RegisterDepartment">Select Your Department
+                                </option>
+                                <!-- departmentDict stores the value of department searchDepartment() method -->
+                                {% for i in departmentDict %}
+                                    <option value="{{ i.departmentId }}"
+                                            name="RegisterDepartment">{{ i.departmentName }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <label>
+                            <select class="form-control" name="RegisterRole">
+                                <option value="Default" name="RegisterRole">Select Your Role
+                                </option>
+                                <!-- roleDict stores the value of department searchRole() method -->
+                                {% for i in roleDict %}
+                                    <option value="{{ i.roleId }}" name="RegisterRole">{{ i.roleName }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <!--
+                 <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="file" required="" name="RegisterImage" placeholder="image">
+                    </div>
+                </div>-->
+
+
+                <div class="form-group text-center m-t-40">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" name="RegisterSubmit"
+                                type="submit">Submit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group text-center m-t-40">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" name="RegisterReset"
+                                type="reset">Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group m-t-30 m-b-0">
+                    <div class="col-sm-12 text-center">
+                        <a href="/" class="text-muted">Already Register?</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- jQuery  -->
+<script src="../../static/adminResources/js/jquery.min.js"></script>
+<script src="../../static/adminResources/js/bootstrap.min.js"></script>
+<script src="../../static/adminResources/js/modernizr.min.js"></script>
+<script src="../../static/adminResources/js/detect.js"></script>
+<script src="../../static/adminResources/js/fastclick.js"></script>
+<script src="../../static/adminResources/js/jquery.slimscroll.js"></script>
+<script src="../../static/adminResources/js/jquery.blockUI.js"></script>
+<script src="../../static/adminResources/js/waves.js"></script>
+<script src="../../static/adminResources/js/wow.min.js"></script>
+<script src="../../static/adminResources/js/jquery.nicescroll.js"></script>
+<script src="../../static/adminResources/js/jquery.scrollTo.min.js"></script>
+
+<script src="../../static/adminResources/js/app.js"></script>
+
+</body>
+</html>
