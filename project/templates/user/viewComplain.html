@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slake - Responsive Multi-purpose HTML5 Template</title>
+    <link rel="shortcut icon" href="../../static/userResources/images/favicon.ico"/>
+    <!--Plugin CSS-->
+    <link href="../../static/userResources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/bootstrap-social.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/navigation.css">
+    <link href="../../static/userResources/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/owl.theme.default.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery.lineProgressbar.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/style.css" rel="stylesheet">
+    <link href="../../static/userResources/css/ionicons.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/icofont.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/prettyPhoto.css" rel="stylesheet">
+
+    <!--main Css-->
+    <link href="../../static/userResources/css/main.css" rel="stylesheet">
+</head>
+<body>
+<!-- header -->
+{% include 'user/header.html' %}
+<!--End header -->
+
+<!-- Page Inner -->
+<section class="bg-primary py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="page-title">
+                    <h2 class="mb-0 text-white">Complain Data</h2>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <ol class="breadcrumb text-left text-md-right mb-0 pl-0">
+                    <li class="breadcrumb-item d-inline-block float-none"><a href="/loadIndex">Home</a></li>
+                    <li class="breadcrumb-item d-inline-block float-none"><a href="#">Manage Complain</a></li>
+                    <li class="breadcrumb-item d-inline-block float-none active">View Complain</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End  Page Inner -->
+
+<!-- Grid Style 1-->
+<section class="wow fadeInUp">
+    <div class="container">
+        <div class="page-header-title">
+            <h4 class="page-title">Complain</h4>
+        </div>
+    </div>
+
+    <div class="page-content-wrapper ">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <h4 class="m-b-30 m-t-0">Complain Data</h4>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                    <table id="datatable" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                                colspan="1" aria-label="Name: activate to sort column descending"
+                                                aria-sort="ascending" style="width: 146px;">Complain Subject
+                                            </th>
+                                            <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                                                aria-label="Description: activate to sort column ascending"
+                                                style="width: 109px;">Complain Description
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                                colspan="1" aria-label="From: activate to sort column ascending"
+                                                style="width: 44px;">Reply From
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                                colspan="1" aria-label="Date: activate to sort column ascending"
+                                                style="width: 95px;">Complain Reply
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                                colspan="1" aria-label="Time: activate to sort column ascending"
+                                                style="width: 95px;">Complain Status
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                                colspan="1" style="width: 86px;">Action
+                                            </th>
+                                        </tr>
+
+                                        </thead>
+
+                                        <tbody>
+                                        {% for i in complainDict %}
+                                            <tr>
+                                                <td>{{ i.complainSubject }}</td>
+                                                <td>{{ i.complainDescription }}</td>
+                                                <td>{{ i.loginEmail }}</td>
+                                                <td>{{ i.complainReply }}</td>
+                                                <td>{{ i.complainStatus }}</td>
+                                                <td>
+                                                    <div style="float : left" >
+                                                    <form action="/deleteComplain" method="post">
+                                                        <input type="hidden" name="ComplainId"
+                                                               value="{{ i.complainId }}">
+                                                        <input type="submit" name="ComplainSubmit" class="btn-danger btn-circle btn-sm" value="Delete">
+                                                    </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</section>
+<!-- End Grid Style 1-->
+
+<!-- Footer-->
+{% include 'user/footer.html' %}
+<!--End  Footer-->
+
+
+<!-- Top To Bottom-->
+<a href="#" class="scrollup text-center bg-primary"><i class="fa fa-angle-up text-white"></i></a>
+<!-- End Top To Bottom-->
+
+<script src="../../static/userResources/js/jquery-3.3.1.min.js"></script>
+<script src="../../static/userResources/js/jquery-ui.min.js"></script>
+<script src="../../static/userResources/js/bootstrap.min.js"></script>
+<script src="../../static/userResources/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../../static/userResources/js/jquery.themepunch.tools.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.slideanims.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.actions.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.layeranimation.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.navigation.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.parallax.min.js"></script>
+<script src="../../static/userResources/js/jquery.waypoints.js"></script>
+<script src="../../static/userResources/js/jquery.counterup.min.js"></script>
+<script src="../../static/userResources/js/owl.carousel.min.js"></script>
+<script src="../../static/userResources/js/wow.min.js"></script>
+<script src="../../static/userResources/js/jqmeter.min.js"></script>
+<script src="../../static/userResources/js/jquery.lineProgressbar.js"></script>
+<script src="../../static/userResources/js/jquery.barfiller.js"></script>
+<script src="../../static/userResources/js/modernizr-custom.js"></script>
+<script src="../../static/userResources/js/jquery.shuffle.min.js"></script>
+<script src="../../static/userResources/js/jquery.fancybox.min.js"></script>
+<script src="../../static/userResources/js/gmap.js"></script>
+<script src="../../static/userResources/js/jquery.prettyPhoto.js"></script>
+<script src="../../static/userResources/js/common.js"></script>
+
+</body>
+</html>

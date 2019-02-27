@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slake - Responsive Multi-purpose HTML5 Template</title>
+    <link rel="shortcut icon" href="../../static/userResources/images/favicon.ico"/>
+    <!--Plugin CSS-->
+    <link href="../../static/userResources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/bootstrap-social.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="../../static/userResources/css/navigation.css">
+    <link href="../../static/userResources/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/owl.theme.default.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery.lineProgressbar.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/style.css" rel="stylesheet">
+    <link href="../../static/userResources/css/ionicons.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/icofont.min.css" rel="stylesheet">
+    <link href="../../static/userResources/css/prettyPhoto.css" rel="stylesheet">
+
+    <!--main Css-->
+    <link href="../../static/userResources/css/main.css" rel="stylesheet">
+</head>
+<body>
+<!-- header -->
+
+<!--End header -->
+
+<!-- Page Inner -->
+
+<!--End  Page Inner  -->
+
+<!-- Address -->
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 wow fadeInUp text-center">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-2 p-md-5">
+                        <h2>Register for an Account</h2>
+
+                        <a class="btn btn-block btn-md btn-social btn-facebook text-white text-uppercase font-weight-bold">
+                            <span class="fa fa-facebook"></span> Sign up with Facebook
+                        </a>
+                        <a class="btn btn-block btn-md btn-social btn-linkedin text-white text-uppercase font-weight-bold">
+                            <span class="fa fa-linkedin"></span> Sign up with linkedin
+                        </a>
+
+                        <div class="pt-4">
+                            <p>Or fill in required fields and create an account.</p>
+                            <form action="/insertRegister" method="POST">
+                                <div class="form-group">
+                                    <input class="form-control rounded" type="text" autocomplete="off" required=""
+                                           name="RegisterFirstName" placeholder="Firstname"
+                                           value="{{ registererrorFirstName }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control rounded" type="text" required="" autocomplete="off"
+                                           name="RegisterLastName" placeholder="Lastname"
+                                           value="{{ registererrorLastName }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control rounded" type="text" required="" autocomplete="off"
+                                           name="RegisterContact" placeholder="Contact No"
+                                           value="{{ registererrorContact }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control rounded" type="email" required="" autocomplete="off"
+                                           name="RegisterEmail" placeholder="Email" value="{{ registererrorEmail }}">
+                                </div>
+                                {{ registerErrorEmail }}
+
+                                <div class="form-group">
+                                    Gender:-&nbsp &nbspMale
+                                    <input type="radio" required="" name="RegisterGender" placeholder="" value="Male">
+                                    &nbsp &nbsp &nbsp Female<input type="radio" required="" name="RegisterGender"
+                                                                   placeholder="" value="Female">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" type="textarea" cols="10" required=""
+                                              name="RegisterAddress" placeholder="Address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <select class="form-control" name="RegisterDepartment">
+                                            <option value="Default" name="RegisterDepartment">Select Your Department
+                                            </option>
+                                            <!-- departmentDict stores the value of department searchDepartment() method -->
+                                            {% for i in departmentDict %}
+                                                <option value="{{ i.departmentId }}"
+                                                        name="RegisterDepartment">{{ i.departmentName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <select class="form-control" name="RegisterRole">
+                                            <option value="Default" name="RegisterRole">Select Your Role
+                                            </option>
+                                            <!-- roleDict stores the value of department searchRole() method -->
+                                            {% for i in roleDict %}
+                                                <option value="{{ i.roleId }}"
+                                                        name="RegisterRole">{{ i.roleName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group text-center m-t-40">
+                                    <div class="col-xs-12">
+                                        <button class="btn btn-primary btn-block btn-lg waves-effect waves-light"
+                                                name="Submit" type="submit">Submit
+                                        </button>
+                                        <button class="btn btn-primary btn-block btn-lg waves-effect waves-light"
+                                                name="Reset" type="reset">Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group m-t-30 m-b-0">
+                                    <div class="col-sm-12 text-center">
+                                        <a href="/" class="text-muted">Already Register?</a>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Address  -->
+
+
+<!-- Footer-->
+{% include 'user/footer.html' %}
+<!--End  Footer-->
+
+<!-- Top To Bottom-->
+<a href="#" class="scrollup text-center bg-primary"><i class="fa fa-angle-up text-white"></i></a>
+<!-- End Top To Bottom-->
+
+<script src="../../static/userResources/js/jquery-3.3.1.min.js"></script>
+<script src="../../static/userResources/js/jquery-ui.min.js"></script>
+<script src="../../static/userResources/js/bootstrap.min.js"></script>
+<script src="../../static/userResources/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../../static/userResources/js/jquery.themepunch.tools.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.slideanims.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.actions.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.layeranimation.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.navigation.min.js"></script>
+<script src="../../static/userResources/js/revolution.extension.parallax.min.js"></script>
+<script src="../../static/userResources/js/jquery.waypoints.js"></script>
+<script src="../../static/userResources/js/jquery.counterup.min.js"></script>
+<script src="../../static/userResources/js/owl.carousel.min.js"></script>
+<script src="../../static/userResources/js/wow.min.js"></script>
+<script src="../../static/userResources/js/jqmeter.min.js"></script>
+<script src="../../static/userResources/js/jquery.lineProgressbar.js"></script>
+<script src="../../static/userResources/js/jquery.barfiller.js"></script>
+<script src="../../static/userResources/js/modernizr-custom.js"></script>
+<script src="../../static/userResources/js/jquery.shuffle.min.js"></script>
+<script src="../../static/userResources/js/jquery.fancybox.min.js"></script>
+<script src="../../static/userResources/js/gmap.js"></script>
+<script src="../../static/userResources/js/jquery.prettyPhoto.js"></script>
+
+<!-- Common js-->
+<script src="../../static/userResources/js/common.js"></script>
+</body>
+</html>
