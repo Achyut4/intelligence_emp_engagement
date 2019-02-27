@@ -1,1 +1,1 @@
-This folder contain resources used at admin side
+This Folder contain resources used at admin side
