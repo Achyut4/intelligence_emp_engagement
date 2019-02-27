@@ -1,1 +1,1 @@
-This Folder contains all DAO files
+This folder contains all DAO files
