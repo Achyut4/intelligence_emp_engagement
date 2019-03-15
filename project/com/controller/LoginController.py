@@ -1,5 +1,5 @@
 """Login controller is used to perform login activity
-first it loads login.html page when user submit login credentials
+first in this line[@app.route('/')] loads login.html page when user submit login credentials
 it checks for records in loginmaster table and set session according
 to login role
 and when logout method called it clear the session data"""
