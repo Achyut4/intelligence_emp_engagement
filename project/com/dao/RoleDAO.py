@@ -75,3 +75,14 @@ class RoleDAO:
             connection.close()
     except:
         Exception
+
+    def ajaxRoleRegister(self,roleVO):
+        connection = con_db()
+        cursor1=connection.cursor()
+        cursor1.execute(
+            "SELECT * FROM rolemaster WHERE role_DepartmentId = '"+roleVO.role_DepartmentId+"' and roleActiveSTatus='activate'"
+        )
+        ajaxRoleRegisterDict = cursor1.fetchall()
+        cursor1.close()
+        connection.close()
+        return ajaxRoleRegisterDict

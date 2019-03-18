@@ -131,6 +131,7 @@ def updateStaff():
             staffVO.registerContact = request.form['RegisterContact']
             print staffVO.registerContact
             staffVO.registerEmail = request.form['RegisterEmail']
+            staffVO.registerPassword=request.form['RegisterPassword']
             staffVO.registerAddress = request.form['RegisterAddress']
             staffDAO.updateUserStaff(staffVO)
             return redirect('/viewStaff')

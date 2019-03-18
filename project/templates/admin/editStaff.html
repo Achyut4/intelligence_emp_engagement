@@ -14,6 +14,44 @@
         <link href="../../static/adminResources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+
+        function loadRole() {
+
+            var register_DepartmentId = document.getElementById("register_DepartmentId");
+
+            var register_RoleId = document.getElementById("register_RoleId");
+
+            register_RoleId.innerHTML = "";
+            var ajax = new XMLHttpRequest();
+
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < jsn.length; i++) {
+
+                        var option = document.createElement("option");
+
+                        option.value = jsn[i].roleId;
+                        option.text = jsn[i].roleName;
+
+                        register_RoleId.options.add(option);
+                    }
+                }
+
+            }
+            ajax.open("get", "/ajaxRoleRegister?register_DepartmentId='" + register_DepartmentId.value + "'", true);
+
+            ajax.send();
+
+
+        }
+    </script>
+
 
     </head>
     <body>
@@ -82,15 +120,15 @@
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <textarea class="form-control" type="textarea" cols="10" required="" name="RegisterAddress" placeholder="Address"></textarea>
+                                <textarea class="form-control" type="textarea" cols="10" required="" name="RegisterAddress" placeholder="{{staffDict[0].registerAddress}}"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
                             <label>
-                                <select class="form-control"  name="RegisterDepartmentId">
-                                    <option value="{{ staffDict[0].departmentId }}" hidden name="RegisterDepartmentId">{{ staffDict[0].departmentName }}
+                                <select class="form-control"  name="RegisterDepartmentId" id="register_DepartmentId" onchange="loadRole()">
+                                    <option value="{{ staffDict[0].departmentId }}"  hidden name="RegisterDepartmentId">{{ staffDict[0].departmentName }}
                                     </option>                                   <!-- departmentDict stores the value of department searchDepartment() method -->
                                     {% for i in departmentDict %}
                                         <option value="{{ i.departmentId }}" name="RegisterDepartmentId">{{ i.departmentName }} </option>
@@ -103,13 +141,13 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                             <label>
-                                <select class="form-control" name="RegisterRoleId">
+                                <select class="form-control" name="RegisterRoleId" id="register_RoleId">
                                     <!-- roleDict stores the value of department searchRole() method -->
-                                    <option value="{{ roleDict[0].roleId }}" hidden name="RegisterRoleId">{{ staffDict[0].roleName }}
+                                    <!--<option value="{{ roleDict[0].roleId }}" hidden name="RegisterRoleId">{{ staffDict[0].roleName }}
                                     </option>
                                     {% for i in roleDict %}
                                         <option value="{{ i.roleId }}" name="RegisterRoleId">{{ i.roleName }}</option>
-                                    {% endfor %}
+                                    {% endfor %}-->
                                 </select>
                             </label>
                             </div>

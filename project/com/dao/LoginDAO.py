@@ -6,7 +6,7 @@ class LoginDAO:
         connection = con_db()
         cursor1 = connection.cursor()
         cursor1.execute(
-            "SELECT loginEmail FROM loginmaster"
+            "SELECT loginEmail FROM loginmaster WHERE loginEmail='"+loginVO.loginEmail+"'"
         )
         loginEmailDict = cursor1.fetchall()
         cursor1.close()
@@ -42,4 +42,6 @@ class LoginDAO:
         cursor1.close()
         connection.close()
         return loginDict
+
+
 

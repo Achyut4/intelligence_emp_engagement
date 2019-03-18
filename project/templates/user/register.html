@@ -25,6 +25,44 @@
 
     <!--main Css-->
     <link href="../../static/userResources/css/main.css" rel="stylesheet">
+    <script type="text/javascript">
+
+        function loadRole() {
+
+            var register_DepartmentId = document.getElementById("register_DepartmentId");
+
+            var register_RoleId = document.getElementById("register_RoleId");
+
+            register_RoleId.innerHTML = "";
+            var ajax = new XMLHttpRequest();
+
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < jsn.length; i++) {
+
+                        var option = document.createElement("option");
+
+                        option.value = jsn[i].roleId;
+                        option.text = jsn[i].roleName;
+
+                        register_RoleId.options.add(option);
+                    }
+                }
+
+            }
+            ajax.open("get", "/ajaxRoleRegister?register_DepartmentId='" + register_DepartmentId.value + "'", true);
+
+            ajax.send();
+
+
+        }
+    </script>
+
 </head>
 <body>
 <!-- header -->
@@ -44,15 +82,9 @@
                     <div class="card-body p-2 p-md-5">
                         <h2>Register for an Account</h2>
 
-                        <a class="btn btn-block btn-md btn-social btn-facebook text-white text-uppercase font-weight-bold">
-                            <span class="fa fa-facebook"></span> Sign up with Facebook
-                        </a>
-                        <a class="btn btn-block btn-md btn-social btn-linkedin text-white text-uppercase font-weight-bold">
-                            <span class="fa fa-linkedin"></span> Sign up with linkedin
-                        </a>
 
                         <div class="pt-4">
-                            <p>Or fill in required fields and create an account.</p>
+
                             <form action="/insertRegister" method="POST">
                                 <div class="form-group">
                                     <input class="form-control rounded" type="text" autocomplete="off" required=""
@@ -73,13 +105,14 @@
                                     <input class="form-control rounded" type="email" required="" autocomplete="off"
                                            name="RegisterEmail" placeholder="Email" value="{{ registererrorEmail }}">
                                 </div>
+                                <div style="color: red">
                                 {{ registerErrorEmail }}
-
+                                </div>
                                 <div class="form-group">
-                                    Gender:-&nbsp &nbspMale
+                                    Gender:-&nbsp &nbspMale:
                                     <input type="radio" required="" name="RegisterGender" placeholder="" value="Male">
-                                    &nbsp &nbsp &nbsp Female<input type="radio" required="" name="RegisterGender"
-                                                                   placeholder="" value="Female">
+                                    &nbsp &nbsp &nbsp Female: <input type="radio" required="" name="RegisterGender"
+                                                                     placeholder="" value="Female">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" type="textarea" cols="10" required=""
@@ -87,7 +120,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <select class="form-control" name="RegisterDepartment">
+                                        <select class="form-control" id="register_DepartmentId"
+                                                name="RegisterDepartment" onchange="loadRole()">
                                             <option value="Default" name="RegisterDepartment">Select Your Department
                                             </option>
                                             <!-- departmentDict stores the value of department searchDepartment() method -->
@@ -100,14 +134,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <select class="form-control" name="RegisterRole">
-                                            <option value="Default" name="RegisterRole">Select Your Role
-                                            </option>
+                                        <select class="form-control" name="RegisterRole" id="register_RoleId">
+                                            <!--<option value="Default" name="RegisterRole">Select Your Role
+                                            </option>-->
                                             <!-- roleDict stores the value of department searchRole() method -->
-                                            {% for i in roleDict %}
-                                                <option value="{{ i.roleId }}"
-                                                        name="RegisterRole">{{ i.roleName }}</option>
-                                            {% endfor %}
+                                            {#                                            <!--{% for i in roleDict %}#}
+                                            {#                                                <option value="{{ i.roleId }}"#}
+                                            {#                                                        name="RegisterRole">{{ i.roleName }}</option>#}
+                                            {#                                            {% endfor %}-->#}
+
                                         </select>
                                     </label>
                                 </div>

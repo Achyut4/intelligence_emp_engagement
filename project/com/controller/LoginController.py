@@ -83,7 +83,7 @@ def insertForgotPassword():
 
         msg['To'] = loginDict[0]['loginEmail']
         msg['Subject'] = "PYTHON PASSWORD"
-        userpassword= loginDict[0]['loginPassword']
+        userpassword = loginDict[0]['loginPassword']
 
         msg.attach(MIMEText(userpassword, 'plain'))
 
