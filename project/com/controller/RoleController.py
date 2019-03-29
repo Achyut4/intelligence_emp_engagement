@@ -78,7 +78,7 @@ def editRole():
             departmentVO.departmentActiveStatus = 'activate'
             departmentDict = departmentDAO.searchDepartment(departmentVO)
             roleDict = roleDAO.editRole(roleVO)
-            print roleDict
+
             return render_template("admin/editRole.html", roleDict=roleDict ,departmentDict = departmentDict)
         else:
             return render_template('admin/login.html',loginerrorDict ='Please login first')

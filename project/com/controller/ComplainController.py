@@ -42,6 +42,7 @@ def viewComplain():
         complainVO = ComplainVO()
 
         complainVO.complainStatus = 'pending'
+        complainVO.complainActiveStatus = 'activate'
         complainDict = complainDAO.searchComplain(complainVO)
         return render_template('admin/viewComplain.html', complainDict=complainDict)
 
@@ -53,7 +54,6 @@ def viewComplain():
         complainVO.complainActiveStatus = 'activate'
 
         complainDict = complainDAO.searchUserComplain(complainVO)
-
 
         return render_template('user/viewComplain.html', complainDict=complainDict)
 

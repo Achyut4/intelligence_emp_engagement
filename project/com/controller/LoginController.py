@@ -1,5 +1,5 @@
 """Login controller is used to perform login activity
-first it loads login.html page when user submit login credentials
+first in this line[@app.route('/')] loads login.html page when user submit login credentials
 it checks for records in loginmaster table and set session according
 to login role
 and when logout method called it clear the session data"""
@@ -27,10 +27,13 @@ def loadLogin():
 def checkLogin():
     loginDAO = LoginDAO()
     loginVO = LoginVO()
+    registerDAO = RegisterDAO()
+    registerVO = RegisterVO()
 
     loginVO.loginEmail = request.form['LoginEmail']
     loginVO.loginPassword = request.form['LoginPassword']
     loginDict = loginDAO.searchLogin(loginVO)
+
 
     # if email is not existes in loginmaster return error
     if len(loginDict) == 0:
@@ -83,7 +86,7 @@ def insertForgotPassword():
 
         msg['To'] = loginDict[0]['loginEmail']
         msg['Subject'] = "PYTHON PASSWORD"
-        userpassword= loginDict[0]['loginPassword']
+        userpassword = loginDict[0]['loginPassword']
 
         msg.attach(MIMEText(userpassword, 'plain'))
 
