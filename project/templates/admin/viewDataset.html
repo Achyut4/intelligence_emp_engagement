@@ -59,7 +59,6 @@
 
                                                         <tr role="row">
                                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 146px;">Dataset Name</th>
-                                                            <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 109px;">Department Description</th>
                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 44px;">Dataset Image</th>
                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 95px;">Dataset Action</th>
                                                             <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 86px;">Salary</th>-->
@@ -71,8 +70,7 @@
                                                         {% for i in datasetDict %}
                                                             <tr>
                                                                 <td>{{ i.datasetName }}</td>
-                                                                <td>{{ i.datasetDescription }}</td>
-                                                                <td> <img src="../../static/adminResources/dataset/{{ i.datasetName }}" width="35px" height="30px" /></td>
+                                                                <td> <img src="../../static/adminResources/dataset/employee/{{ i.datasetName }}" width="35px" height="30px" /></td>
                                                                 <td>
                                                                     <form action="/deleteDataset" method="post">
                                                                         <input type="hidden" name="DatasetId"  value="{{ i.datasetId }}">
