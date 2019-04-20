@@ -20,15 +20,15 @@ def inserFeedback():
         feedbackVO = FeedbackVO()
 
         feedbackVO.feedbackRating = request.form['FeedbackRating']
-        print feedbackVO.feedbackRating
+
         feedbackVO.feedbackDescription = request.form['FeedbackDescription'].replace("'", "")
-        print feedbackVO.feedbackDescription
+
         feedbackVO.feedbackFrom_LoginId = str(session['sessionloginId'])
-        print feedbackVO.feedbackFrom_LoginId
-        feedbackVO.feedbackDate = str(datetime.today().strftime("%d-%m-%y"))
-        print feedbackVO.feedbackDate
+
+        feedbackVO.feedbackDate = str(datetime.today().strftime("%d-%m-%Y"))
+
         feedbackVO.feedbackTime = str(datetime.now().hour) + ':' + str(datetime.now().minute)
-        print feedbackVO.feedbackTime
+
         feedbackVO.feedbackActiveStatus = 'activate'
         feedbackDAO.insertFeedback(feedbackVO)
         return redirect("/loadIndex")

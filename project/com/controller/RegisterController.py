@@ -12,6 +12,7 @@ from email import encoders
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.message import Message
+from datetime import datetime
 from project import app
 from project.com.dao.DepartmentDAO import DepartmentDAO
 from project.com.dao.LoginDAO import LoginDAO
@@ -21,7 +22,10 @@ from project.com.vo.DepartmentVO import DepartmentVO
 from project.com.vo.LoginVO import LoginVO
 from project.com.vo.RegisterVO import RegisterVO
 from project.com.vo.RoleVO import RoleVO
-
+from project.com.dao.AttendanceDAO import AttendanceDAO
+from project.com.vo.AttendanceVO import AttendanceVO
+from project.com.dao.TrackingDAO import TrackingDAO
+from project.com.vo.TrackingVO import TrackingVO
 
 @app.route('/loadRegister')
 def loadregister():
@@ -50,6 +54,11 @@ def insertregister():
     departmentVO = DepartmentVO()
     roleDAO = RoleDAO()
     roleVO = RoleVO()
+    attendanceDAO=AttendanceDAO()
+    attendanceVO=AttendanceVO()
+    trackingDAO=TrackingDAO()
+    trackingVO=TrackingVO()
+
     departmentVO.departmentActiveStatus = 'activate'
     roleVO.roleActiveStatus = 'activate'
 
@@ -83,7 +92,9 @@ def insertregister():
     loginVO.loginRole = 'user'
 
     loginEmailDict = loginDAO.searchEmailLogin(loginVO)
-    if loginVO.loginEmail == loginEmailDict[0]['loginEmail']:
+    if len(loginEmailDict) == 0:
+        pass
+    elif loginVO.loginEmail == loginEmailDict[0]['loginEmail']:
         return render_template('user/register.html', registerErrorEmail='Email already registered',
                                registererrorFirstName=registerVO.registerFirstName,
                                registererrorLastName=registerVO.registerLastName,
@@ -95,7 +106,7 @@ def insertregister():
     #
     #     return render_template('admin/register.html',registererrorEmail ="Please enter valid Email")
     # else:
-    loginDict = loginDAO.insertLogin(loginVO)
+
 
     # Send Password through Mail
     fromaddr = "dabhi9597@gmail.com"
@@ -121,13 +132,23 @@ def insertregister():
     server.sendmail(fromaddr, loginVO.loginEmail, text)
 
     server.quit()
-
+    loginDict = loginDAO.insertLogin(loginVO)
     registerVO.register_LoginId = str(loginDict)
     # insert data into registermaster table
     # if (validate_email(registerVO.registerEmail) == 'FALSE'):
     #     return render_template('admin/register.html',registererrorEmail ="Please enter valid Email")
     # else:
+
     registerDAO.insertRegister(registerVO)
+
+
+    attendanceVO.attendanceDate = str(datetime.today().strftime("%d-%m-%Y"))
+    attendanceVO.attendanceTime = str(datetime.now().hour) + ':' + str(datetime.now().minute)
+    attendanceVO.attendanceStatus = "absent"
+    attendanceVO.attendanceActiveStatus='activate'
+    attendanceVO.attendance_LoginId=str(loginDict)
+    attendanceDAO.insertAttendance(attendanceVO)
+
 
     # return to login.html after successful data insertion into registermaster and loginmaster table
 

@@ -13,3 +13,10 @@ import project.com.controller.StaffController
 import project.com.controller.ComplainController
 
 import project.com.controller.FeedbackController
+
+import project.com.controller.AttendanceController
+
+import project.com.controller.ReportController
+
+import project.com.controller.TrackingController
+

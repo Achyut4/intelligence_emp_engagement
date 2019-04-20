@@ -23,7 +23,7 @@ def insertComplain():
         complainVO.complainSubject = request.form['ComplainSubject'].replace("'", "")
         complainVO.complainDescription = request.form['ComplainDescription'].replace("'", "")
         complainVO.complainFrom_LoginId = str(session['sessionloginId'])
-        complainVO.complainDate = str(datetime.today().strftime("%d-%m-%y"))
+        complainVO.complainDate = str(datetime.today().strftime("%d-%m-%Y"))
         complainVO.complainTime = str(datetime.now().hour) + ':' + str(datetime.now().minute)
         complainVO.complainReply = 'NIL'
         complainVO.complainStatus = 'pending'

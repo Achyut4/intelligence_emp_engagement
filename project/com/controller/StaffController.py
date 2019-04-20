@@ -23,38 +23,38 @@ def insertStaff():
 # view staff method
 @app.route('/viewStaff')
 def viewStaff():
-    print session['sessionloginRole']
-    # try:
-    if session['sessionloginRole'] == 'admin':
-        staffDAO = StaffDAO()
-        departmentVO = DepartmentVO()
-        roleVO = RoleVO()
-        staffVO = StaffVO()
-        staffVO.registerActiveStatus = 'activate'
-        departmentVO.departmentActiveStatus = 'activate'
-        roleVO.roleActiveStatus = 'activate'
-        staffDict = staffDAO.searchStaff(staffVO, departmentVO, roleVO)
-        return render_template("admin/viewStaff.html", staffDict=staffDict)
 
-    elif session['sessionloginRole'] == 'user':
-        staffDAO = StaffDAO()
-        departmentVO = DepartmentVO()
-        roleVO = RoleVO()
-        staffVO = StaffVO()
+    try:
+        if session['sessionloginRole'] == 'admin':
+            staffDAO = StaffDAO()
+            departmentVO = DepartmentVO()
+            roleVO = RoleVO()
+            staffVO = StaffVO()
+            staffVO.registerActiveStatus = 'activate'
+            departmentVO.departmentActiveStatus = 'activate'
+            roleVO.roleActiveStatus = 'activate'
+            staffDict = staffDAO.searchStaff(staffVO, departmentVO, roleVO)
+            return render_template("admin/viewStaff.html", staffDict=staffDict)
 
-        staffVO.register_LoginId = str(session['sessionloginId'])
-        staffVO.registerActiveStatus = 'activate'
-        departmentVO.departmentActiveStatus = 'activate'
-        roleVO.roleActiveStatus = 'activate'
-        staffDict = staffDAO.searchUserStaff(staffVO, departmentVO, roleVO)
-        return render_template("user/viewStaff.html", staffDict=staffDict)
+        elif session['sessionloginRole'] == 'user':
+            staffDAO = StaffDAO()
+            departmentVO = DepartmentVO()
+            roleVO = RoleVO()
+            staffVO = StaffVO()
 
-    else:
-        return render_template('admin/login.html', loginerrorDict='Please login first')
+            staffVO.register_LoginId = str(session['sessionloginId'])
+            staffVO.registerActiveStatus = 'activate'
+            departmentVO.departmentActiveStatus = 'activate'
+            roleVO.roleActiveStatus = 'activate'
+            staffDict = staffDAO.searchUserStaff(staffVO, departmentVO, roleVO)
+            return render_template("user/viewStaff.html", staffDict=staffDict)
+
+        else:
+            return render_template('admin/login.html', loginerrorDict='Please login first')
 
 
-    # except:
-    #     return render_template("admin/login.html", loginerrorEmailDict="Please login first")
+    except:
+        return render_template("admin/login.html", loginerrorEmailDict="Please login first")
 
 
 # delete staff method
@@ -94,7 +94,6 @@ def editStaff():
         roleDict = roleDAO.searchRole(roleVO)
         staffVO.register_LoginId = request.form['Register_LoginId']
         staffDict = staffDAO.editStaff(staffVO)
-        print staffDict
         return render_template('admin/editStaff.html', staffDict=staffDict, departmentDict=departmentDict,
                                roleDict=roleDict)
     else:
@@ -125,11 +124,9 @@ def updateStaff():
             staffDAO = StaffDAO()
             staffVO = StaffVO()
             staffVO.register_LoginId = str(session['sessionloginId'])
-            print staffVO.register_LoginId
             staffVO.registerFirstName = request.form['RegisterFirstName']
             staffVO.registerLastName = request.form['RegisterLastName']
             staffVO.registerContact = request.form['RegisterContact']
-            print staffVO.registerContact
             staffVO.registerEmail = request.form['RegisterEmail']
             staffVO.registerPassword=request.form['RegisterPassword']
             staffVO.registerAddress = request.form['RegisterAddress']

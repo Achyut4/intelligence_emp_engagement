@@ -13,6 +13,9 @@ from project.com.dao.RegisterDAO import RegisterDAO
 from project.com.dao.LoginDAO import LoginDAO
 from project.com.vo.RegisterVO import RegisterVO
 from project.com.vo.LoginVO import LoginVO
+from project.com.dao.LogDAO import LogDAO
+from project.com.vo.LogVO import LogVO
+from datetime import datetime
 from project import app
 
 
@@ -27,10 +30,12 @@ def loadLogin():
 def checkLogin():
     loginDAO = LoginDAO()
     loginVO = LoginVO()
-
+    registerDAO = RegisterDAO()
+    registerVO = RegisterVO()
     loginVO.loginEmail = request.form['LoginEmail']
     loginVO.loginPassword = request.form['LoginPassword']
     loginDict = loginDAO.searchLogin(loginVO)
+
 
     # if email is not existes in loginmaster return error
     if len(loginDict) == 0:
@@ -52,13 +57,77 @@ def checkLogin():
 # loadIndex method to load index page for Admin
 @app.route('/loadIndex')
 def loadIndex():
-    try:
-        if session['sessionloginRole'] == 'admin':
-            return render_template("admin/index.html")
-        else:
-            return render_template('user/index.html')
-    except:
-        return render_template('admin/login.html', loginerrorEmailDict="Please login first")
+    # try:
+
+    if session['sessionloginRole'] == 'admin':
+        logDAO = LogDAO()
+        logVO = LogVO()
+
+        registerDAO = RegisterDAO()
+        registerVO = RegisterVO()
+
+        logVO.logDate = str(datetime.today().strftime("%d-%m-%Y"))
+
+        logVO.logDate = logVO.logDate.split('-')
+
+        logVO.logDate.pop(0)
+
+        separater = '-'
+        logVO.logDate = separater.join(logVO.logDate)
+        logVO.logDate = separater + logVO.logDate
+
+        registerVO.registerActiveStatus = 'activate'
+        registerLogDict = registerDAO.searchRegisterLog(registerVO)
+
+        logDict = logDAO.searchReport(logVO, registerVO)
+
+        log_LoginId = []
+        loginIdDict = logDAO.searchlogin(logVO)
+        for i in range(len(loginIdDict)):
+            log_LoginId.append(loginIdDict[i]['log_LoginId'])
+        count = []
+
+        for i in range(len(logDict)):
+            number = 0
+            for j in range(len(logDict)):
+                if logDict[j]['log_LoginId'] == i:
+                    number = number + 1
+            if number == 0:
+                continue
+            else:
+                count.append(number)
+        error="Hello Admin"
+        if 'error' in session:
+            error=session['error']
+            session.pop('error')
+        print count
+        return render_template('admin/index.html', registerLogDict=registerLogDict, count=count, c=len(count),error=error)
+
+
+    else:
+        logDAO = LogDAO()
+        logVO = LogVO()
+
+        registerDAO = RegisterDAO()
+        registerVO = RegisterVO()
+
+        logVO.logDate = str(datetime.today().strftime("%d-%m-%Y"))
+
+        logVO.logDate = logVO.logDate.split('-')
+
+        logVO.logDate.pop(0)
+
+        separater = '-'
+        logVO.logDate = separater.join(logVO.logDate)
+        logVO.logDate = separater + logVO.logDate
+        logVO.log_LoginId=str(session['sessionloginId'])
+
+        logDict = logDAO.searchUserReport(logVO)
+        count=len(logDict)
+        print count
+        return render_template('user/index.html',month=logVO.logDate,count=count)
+    # except:
+    #     return render_template('admin/login.html', loginerrorEmailDict="Please login first")
 
 
 @app.route('/loadForgotPassword')
