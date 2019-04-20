@@ -1,25 +1,17 @@
+
 <div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
 
-                    <form class="sidebar-search">
-                        <div class="">
-                            <input type="text" class="form-control search-bar" placeholder="Search...">
-                        </div>
-                        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                    </form>
 
                     <div class="user-details">
                         <div class="text-center">
-                            <img src="../../static/adminResources/images/avatar-1.jpg" alt="" class="img-circle">
+                            <img src="../../static/adminResources/images/logo.png" alt="" class="img-circle">
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">James A. Grim <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Admin <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"> Profile</a></li>
-                                    <li><a href="javascript:void(0)"> Settings</a></li>
-                                    <li><a href="javascript:void(0)"> Lock screen</a></li>
-                                    <li class="divider"></li>
+                                    
                                     <li><a href="/logout"> Logout</a></li>
                                 </ul>
                             </div>
@@ -71,11 +63,19 @@
                                 </ul>
                             </li>
 
+                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ion-funnel"></i><span>Manage Attendance </span><span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="/startAttendance"> Start taking Attendance</a></li>
+                                    <li><a href="/viewAttendance"> View Attendance</a></li>
+                                </ul>
+                            </li>
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ion-beaker"></i> <span> Manage Detection </span> <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="ui-buttons.html">Add Detection Data</a></li>
-                                    <li><a href="ui-panels.html">View Detection Data</a></li>
+                                    <li><a href="/startTracking">Start taking Detection Data</a></li>
+                                    <li><a href="/viewTracking">View Detection Data</a></li>
                                     <!--<li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
                                     <li><a href="ui-modals.html">Modals</a></li>
                                     <li><a href="ui-components.html">Components</a></li>
@@ -85,15 +85,7 @@
                                     <li><a href="ui-grid.html">Grid</a></li>-->
                                 </ul>
                             </li>
-
-                            
-                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ion-funnel"></i><span>Manage Attendance </span><span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="maps-google.html"> Add Attendance</a></li>
-                                    <li><a href="maps-vector.html"> View Attendance</a></li>
-                                </ul>
-                            </li>
+ 
 
 							<li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ion-funnel"></i><span>Manage Department </span><span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -123,18 +115,17 @@
                              <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ion-map"></i><span> Manage Reports </span><span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="maps-google.html"> Create Report</a></li>
-                                    <li><a href="maps-vector.html"> View Report</a></li>
+                                    <li><a href="/ajaxLoadReport"> View Report</a></li>
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
+                            <!--<li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ion-cube"></i><span> Manage Notification </span><span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="maps-google.html"> Send Notification</a></li>
                                     <li><a href="maps-vector.html"> View Notification</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
 
                             
                              <li class="has_sub">

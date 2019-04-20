@@ -11,6 +11,9 @@
 
         <link rel="shortcut icon" href="../../static/adminResources/images/favicon.ico">
 
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="../../project/static/adminResources/css/morris../../static/">
+
         <link href="../../static/adminResources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
@@ -18,44 +21,34 @@
     </head>
 
 
-    <body>
+    <body class="">
 
         <!-- Begin page -->
-        <div class=""></div>
-        <div class="wrapper-page">
-            <div class="panel panel-color panel-primary panel-pages">
+        <div id="wrapper">
 
-                <div class="panel-body">
-                    <h3 class="text-center m-t-0 m-b-15">
-                        <a href="index.html" class="logo logo-admin"><img src="../../static/adminResources/images/logo_dark.png" height="28" alt="logo"></a>
-                    </h3>
-                    <h4 class="text-muted text-center m-t-0"><b>Complaint</b></h4>
-
-                    <form class="form-horizontal m-t-20" action="/insertComplain" method="post">
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <input class="form-control" type="text" autocomplete="off" required="" name="ComplainSubject" placeholder="Subject">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <textarea class="form-control" type="text" name="ComplainDescription" required="" placeholder="Description"></textarea>
-                            </div>
-                        </div>
+            <!-- Top Bar Start -->
+        {% include "admin/header.html" %}
+            <!-- Top Bar End -->
 
 
-                        <div class="form-group text-center m-t-40">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" name="ComplainSubmit" type="submit">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <!-- ========== Left Sidebar Start ========== -->
 
+        {% include "admin/menu.html" %}
+            <!-- Left Sidebar End -->
+
+            <!-- Start right Content here -->
+
+
+<h1 style="color: red">   {{cameraErrorDict}}  </h1>>
+
+                {% include "admin/footer.html" %}
             </div>
+            <!-- End Right content here -->
+
         </div>
+        <!-- END wrapper -->
+
+
         <!-- jQuery  -->
         <script src="../../static/adminResources/js/jquery.min.js"></script>
         <script src="../../static/adminResources/js/bootstrap.min.js"></script>
@@ -68,6 +61,12 @@
         <script src="../../static/adminResources/js/wow.min.js"></script>
         <script src="../../static/adminResources/js/jquery.nicescroll.js"></script>
         <script src="../../static/adminResources/js/jquery.scrollTo.min.js"></script>
+
+        <!--Morris Chart-->
+        <script src="../../project/static/adminResources/js/morris.min.js"></script>
+        <script src="../../project/static/adminResources/js/raphael-min.js"></script>
+
+        <script src="../../project/static/adminResources/js/dashborad.js"></script>
 
         <script src="../../static/adminResources/js/app.js"></script>
 

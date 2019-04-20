@@ -24,7 +24,8 @@
         <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
 
-    <title>View Staff</title>
+
+    <title>View Department</title>
 </head>
 <body class="fixed-left">
             <div id="wrapper">
@@ -37,7 +38,7 @@
 
                     <div class="">
                         <div class="page-header-title">
-                            <h4 class="page-title">Staff Table</h4>
+                            <h4 class="page-title">Detection Table</h4>
                         </div>
                     </div>
 
@@ -45,11 +46,48 @@
 
                         <div class="container">
 
-                            <div class="row">
+                                            <div class="form-group">
+                    <div class="col-xs-12">
+                        <label>
+                            <select class="form-control" name="TrackingDepartment" id="tracking_DepartmentId" onchange="loadRole()">
+                                <option value="Default" name="TrackingDepartment" >Select Department
+                                </option>
+                                <!-- departmentDict stores the value of department searchDepartment() method -->
+                                {% for i in departmentDict %}
+                                    <option value="{{ i.departmentId }}"
+                                            name="RegisterDepartment">{{ i.departmentName }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <label>
+                            <select class="form-control" name="TrackingRole" id="tracking_RoleId">
+                               
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group text-center m-t-40" style="width: 20%">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" onclick="loadTrackingData()" name="TrackingSubmit"
+                                type="submit">Submit
+                        </button>
+                    </div>
+                </div>
+
+
+
+                            <div class="row"  style="padding-top: 10%">
                                 <div class="col-md-12">
                                     <div class="panel panel-primary">
                                         <div class="panel-body">
-                                            <h4 class="m-b-30 m-t-0">Staff Data</h4>
+                                            <h4 class="m-b-30 m-t-0">Detection Data</h4>
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -58,40 +96,20 @@
 
                                                         <tr role="row">
                                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 146px;">Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Department: activate to sort column ascending" style="width: 240px;">Department Name</th>
-                                                            <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 109px;">Role Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 44px;">Email Id</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 95px;">Staff Action</th>
-                                                            <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 86px;">Salary</th>-->
+                                                            
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Department: activate to sort column ascending" style="width: 240px;">Department</th>
+                                                            
+                                                            <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 109px;">Role</th>
+                                                            
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Place: activate to sort column ascending" style="width: 44px;">Place</th>
+                                                            
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Time: activate to sort column ascending" style="width: 95px;">Time</th>
                                                         </tr>
 
                                                         </thead>
 
-                                                        <tbody>
-                                                        {% for i in staffDict %}
-                                                            <tr>
-                                                                <td>{{ i.registerFirstName }}&nbsp{{ i.registerLastName }}</td>
-                                                                <td>{{ i.departmentName }}</td>
-                                                                <td>{{ i.roleName }}</td>
-                                                                <td>{{ i.loginEmail }}</td>
-                                                                <td>
-                                                                <div>
-
-                                                                        <div style="float : left"> <form action="/deleteStaff" method="post">
-                                                                    <input type="hidden" name="Register_LoginId" value="{{ i.register_LoginId }}">
-                                                                    <input type="submit" name="" class="btn-danger btn-rounded" value="Delete">
-                                                                    </form>
-                                                                        </div><br><br>
-                                                                        <div style="float : left" >
-                                                                    <form action="/editStaff" method="post">
-                                                                    <input type="hidden" name="Register_LoginId" value="{{ i.register_LoginId }}">
-                                                                    <input type="submit" name="" class="btn-danger btn-rounded" value="Edit">
-                                                                    </form>
-                                                                    </div>
-                                                                </div>
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
+                                                        <tbody id="table_body">
+                                                        
                                                         </tbody>
                                             </table>
 
@@ -129,8 +147,94 @@
         <script src="../../static/adminResources/js/responsive.bootstrap.min.js"></script>
         <script src="../../static/adminResources/js/dataTables.scroller.min.js"></script>
 
+        <script type="text/javascript">
+
+        function loadRole() {
+
+            var tracking_DepartmentId = document.getElementById("tracking_DepartmentId");
+
+            var tracking_RoleId = document.getElementById("tracking_RoleId");
+
+            tracking_RoleId.innerHTML = "";
+            var ajax = new XMLHttpRequest();
+
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < jsn.length; i++) {
+
+                        var option = document.createElement("option");
+
+                        option.value = jsn[i].roleId;
+                        option.text = jsn[i].roleName;
+
+                        tracking_RoleId.options.add(option);
+                    }
+                }
+
+            }
+            ajax.open("get", "/ajaxRoleTracking?tracking_DepartmentId='" + tracking_DepartmentId.value + "'", true);
+
+            ajax.send();
+
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function loadTrackingData() {
+
+
+
+            var tracking_RoleId = document.getElementById("tracking_RoleId");
+
+            var tableBody=document.getElementById("table_body")
+            tableBody.innerHTML="";
+
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < jsn.length; i++) {
+
+
+                    
+
+                        var r = tableBody.insertRow(-1);
+
+                        var p = r.insertCell(0);
+                        var q =r.insertCell(1);            
+                        var s=r.insertCell(2);
+                        var t=r.insertCell(3);
+                        var u=r.insertCell(4)
+                   
+                        r.value=p.innerHTML=jsn[i]['registerFirstName']+"  "+jsn[i]['registerLastName'];
+                        r.value=q.innerHTML=jsn[i]['departmentName'];
+                        r.value=s.innerHTML=jsn[i]['roleName'];
+                        r.value=t.innerHTML=jsn[i]['trackingPlace'];
+                        r.value=u.innerHTML=jsn[i]['trackingTime'];
+
+
+                    }
+                }
+            }
+
+            ajax.open("get", "/ajaxLoadTracking?tracking_RoleId="+tracking_RoleId.value, true);
+            ajax.send();
+        }
+    </script>
+
         <!-- Datatable init js -->
-        <script src="../../static/adminResources/js/datatables.init.js"></script>
+       <!-- <script src="../../static/adminResources/js/datatables.init.js"></script>-->
 
         <script src="../../static/adminResources/js/app.js"></script>
                             </div>

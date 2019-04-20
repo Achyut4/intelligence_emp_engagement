@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Intelligence Employee Engagement</title>
+        <title>View Attendance</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,7 +24,7 @@
         <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
         <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
 
-    <title>View Staff</title>
+    <title>View Role</title>
 </head>
 <body class="fixed-left">
             <div id="wrapper">
@@ -37,59 +37,40 @@
 
                     <div class="">
                         <div class="page-header-title">
-                            <h4 class="page-title">Staff Table</h4>
+                            <h4 class="page-title">Attendance Table</h4>
                         </div>
                     </div>
-
+                    <p style="position: absolute;right: 95px">Date:{{ dateDict }}</p>
                     <div class="page-content-wrapper ">
 
                         <div class="container">
 
                             <div class="row">
+                            <h4 class="m-b-30 m-t-0">Attendance Data</h4>
                                 <div class="col-md-12">
                                     <div class="panel panel-primary">
                                         <div class="panel-body">
-                                            <h4 class="m-b-30 m-t-0">Staff Data</h4>
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
 
                                                     <table id="datatable" class="table table-striped table-bordered">
                                                         <thead>
-
                                                         <tr role="row">
-                                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 146px;">Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Department: activate to sort column ascending" style="width: 240px;">Department Name</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Person Name: activate to sort column ascending" style="width: 44px;">Person Name</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Department Name: activate to sort column ascending" style="width: 240px;">Department Name</th>
                                                             <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 109px;">Role Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 44px;">Email Id</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 95px;">Staff Action</th>
-                                                            <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 86px;">Salary</th>-->
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Time: activate to sort column ascending" style="width: 44px;">Entry Time</th>
+                                                            <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 95px;">Start date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 86px;">Salary</th>-->
                                                         </tr>
-
                                                         </thead>
-
                                                         <tbody>
-                                                        {% for i in staffDict %}
+                                                        {% for i in logDict %}
                                                             <tr>
-                                                                <td>{{ i.registerFirstName }}&nbsp{{ i.registerLastName }}</td>
+                                                                <td>{{ i.registerFirstName }} {{ i.registerLastName }}</td>
                                                                 <td>{{ i.departmentName }}</td>
                                                                 <td>{{ i.roleName }}</td>
-                                                                <td>{{ i.loginEmail }}</td>
-                                                                <td>
-                                                                <div>
-
-                                                                        <div style="float : left"> <form action="/deleteStaff" method="post">
-                                                                    <input type="hidden" name="Register_LoginId" value="{{ i.register_LoginId }}">
-                                                                    <input type="submit" name="" class="btn-danger btn-rounded" value="Delete">
-                                                                    </form>
-                                                                        </div><br><br>
-                                                                        <div style="float : left" >
-                                                                    <form action="/editStaff" method="post">
-                                                                    <input type="hidden" name="Register_LoginId" value="{{ i.register_LoginId }}">
-                                                                    <input type="submit" name="" class="btn-danger btn-rounded" value="Edit">
-                                                                    </form>
-                                                                    </div>
-                                                                </div>
-                                                                </td>
+                                                                <td>{{ i.logTime }}</td>
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>
@@ -98,7 +79,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
         <script src="../../static/adminResources/js/jquery.min.js"></script>

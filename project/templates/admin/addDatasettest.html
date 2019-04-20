@@ -20,23 +20,26 @@
 
             var dataset_DepartmentId = document.getElementById("dataset_DepartmentId");
 
-            var dataset_LoginId = document.getElementById("dataset_LoginId");
-            dataset_LoginId.innerHTML = "";
+            var dataset_RegisterId = document.getElementById("dataset_RegisterId");
+
+            dataset_RegisterId.innerHTML = "";
             var ajax = new XMLHttpRequest();
+
 
             ajax.onreadystatechange = function () {
 
                 if (ajax.readyState == 4) {
+
                     var jsn = JSON.parse(ajax.responseText);
 
                     for (var i = 0; i < jsn.length; i++) {
 
                         var option = document.createElement("option");
 
-                        option.value = jsn[i].register_LoginId;
+                        option.value = jsn[i].registerId;
                         option.text = jsn[i].registerFirstName+" "+jsn[i].registerLastName;
 
-                        dataset_LoginId.options.add(option);
+                        dataset_RegisterId.options.add(option);
                     }
                 }
 
@@ -68,12 +71,11 @@
                     </h3>
                     <h4 class="text-muted text-center m-t-0"><b>Add dataset</b></h4>
 
-
-                    <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="/insertDataset" method="POST">
+                    <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="/insertDatasettest" method="POST">
                             <div class="form-group">
                                     <label>
                                         <select class="form-control" id="dataset_DepartmentId"
-                                                name="DatasetDepartment" onchange="loadRegister()">
+                                                name="RegisterDepartment" onchange="loadRegister()">
                                             <option value="Default" name="DatasetDepartment">Select Department
                                             </option>
                                             <!-- departmentDict stores the value of department searchDepartment() method -->
@@ -86,7 +88,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <select class="form-control" name="DatasetLoginId" id="dataset_LoginId">
+                                        <select class="form-control" name="DatasetRegister" id="dataset_RegisterId">
                                             <!--<option value="Default" name="RegisterRole">Select Your Role
                                             </option>-->
                                             <!-- roleDict stores the value of department searchRole() method -->

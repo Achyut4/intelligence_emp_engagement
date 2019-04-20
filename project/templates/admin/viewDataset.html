@@ -5,12 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Upbond - Responsive Admin Dashboard Template</title>
+        <title>Intelligence Employee Engagement</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="adminResources/images/favicon.ico">
+        <link rel="shortcut icon" href="../../static/adminResources/images/favicon.ico">
 
         <!-- DataTables -->
         <link href="../../static/adminResources/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -50,7 +50,7 @@
                                 <div class="col-md-12">
                                     <div class="panel panel-primary">
                                         <div class="panel-body">
-                                            <h4 class="m-b-30 m-t-0">Daraset Data</h4>
+                                            <h4 class="m-b-30 m-t-0">Dataset Data</h4>
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -59,7 +59,6 @@
 
                                                         <tr role="row">
                                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 146px;">Dataset Name</th>
-                                                            <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 109px;">Department Description</th>
                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 44px;">Dataset Image</th>
                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 95px;">Dataset Action</th>
                                                             <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 86px;">Salary</th>-->
@@ -71,8 +70,7 @@
                                                         {% for i in datasetDict %}
                                                             <tr>
                                                                 <td>{{ i.datasetName }}</td>
-                                                                <td>{{ i.datasetDescription }}</td>
-                                                                <td> <img src="../../static/adminResources/dataset/{{ i.datasetName }}" width="35px" height="30px" /></td>
+                                                                <td> <img src="../../static/adminResources/dataset/employee/{{ i.datasetName }}" width="75px" height="70px" /></td>
                                                                 <td>
                                                                     <form action="/deleteDataset" method="post">
                                                                         <input type="hidden" name="DatasetId"  value="{{ i.datasetId }}">
