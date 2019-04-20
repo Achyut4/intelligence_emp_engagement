@@ -5,5 +5,6 @@ class DatasetVO:
     datasetId=IntegerField
     datasetName=StringField
     datasetPath=StringField
-    datasetDescription=StringField
+    dataset_DepartmentId=IntegerField
+    dataset_LoginId=IntegerField
     datasetActiveStatus=StringField

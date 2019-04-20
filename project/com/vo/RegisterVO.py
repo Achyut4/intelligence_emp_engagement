@@ -11,3 +11,4 @@ class RegisterVO:
     register_RoleId=IntegerField
     register_LoginId=IntegerField
     registerPhoto=StringField
+    registerActiveStatus=StringField
