@@ -6,7 +6,7 @@ class DatasetDAO:
         cursor1 = connection.cursor()
         #Insert query to add data into departmentmaster table
         cursor1.execute(
-            "INSERT INTO datasetmaster(datasetName,datasetPath,datasetDescription,datasetActiveStatus) VALUES ('" + datasetVO.datasetName + "','" + datasetVO.datasetPath + "','" + datasetVO.datasetDescription + "','" + datasetVO.datasetActiveStatus + "')")
+            "INSERT INTO datasetmaster(datasetName,datasetPath,dataset_DepartmentId,dataset_LoginId,datasetActiveStatus) VALUES ('" + datasetVO.datasetName + "','" + datasetVO.datasetPath + "','" + datasetVO.dataset_DepartmentId + "','"+datasetVO.dataset_LoginId+"','" + datasetVO.datasetActiveStatus + "')")
         connection.commit()
         cursor1.close()
         connection.close()

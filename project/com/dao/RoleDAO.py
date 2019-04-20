@@ -80,9 +80,20 @@ class RoleDAO:
         connection = con_db()
         cursor1=connection.cursor()
         cursor1.execute(
-            "SELECT * FROM rolemaster WHERE role_DepartmentId = '"+roleVO.role_DepartmentId+"' and roleActiveSTatus='activate'"
+            "SELECT * FROM rolemaster WHERE role_DepartmentId = '"+roleVO.role_DepartmentId+"' and roleActiveStatus='activate'"
         )
         ajaxRoleRegisterDict = cursor1.fetchall()
         cursor1.close()
         connection.close()
         return ajaxRoleRegisterDict
+
+    def ajaxRoleTracking(self, roleVO):
+        connection = con_db()
+        cursor1 = connection.cursor()
+        cursor1.execute(
+            "SELECT * FROM rolemaster WHERE role_DepartmentId = '" + roleVO.role_DepartmentId + "' and roleActiveStatus='activate' and roleName !='Employee'"
+        )
+        ajaxRoleTrackingDict=cursor1.fetchall()
+        cursor1.close()
+        connection.close()
+        return ajaxRoleTrackingDict

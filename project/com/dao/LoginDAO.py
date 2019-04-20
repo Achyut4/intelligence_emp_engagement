@@ -42,6 +42,3 @@ class LoginDAO:
         cursor1.close()
         connection.close()
         return loginDict
-
-
-
