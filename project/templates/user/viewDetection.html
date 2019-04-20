@@ -25,6 +25,8 @@
 
     <!--main Css-->
     <link href="../../static/userResources/css/main.css" rel="stylesheet">
+
+
 </head>
 <body>
 <!-- header -->
@@ -37,14 +39,14 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="page-title">
-                    <h2 class="mb-0 text-white">Complain Data</h2>
+                    <h2 class="mb-0 text-white">Detection Data</h2>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <ol class="breadcrumb text-left text-md-right mb-0 pl-0">
                     <li class="breadcrumb-item d-inline-block float-none"><a href="/loadIndex">Home</a></li>
-                    <li class="breadcrumb-item d-inline-block float-none"><a href="#">Manage Complain</a></li>
-                    <li class="breadcrumb-item d-inline-block float-none active">View Complain</li>
+                    <li class="breadcrumb-item d-inline-block float-none"><a href="#">Detection Data</a></li>
+                    <li class="breadcrumb-item d-inline-block float-none active">View Detection Data</li>
                 </ol>
             </div>
         </div>
@@ -56,7 +58,7 @@
 <section class="wow fadeInUp">
     <div class="container">
         <div class="page-header-title">
-            <h4 class="page-title">Complain</h4>
+            <h4 class="page-title">Detection</h4>
         </div>
     </div>
 
@@ -68,65 +70,79 @@
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-body">
-                            <h4 class="m-b-30 m-t-0">Complain Data</h4>
+                            <h4 class="m-b-30 m-t-0">Detection Data</h4>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
 
-                                    <table id="datatable" class="table table-striped table-bordered">
+                                    
+                                        <div class="form-group" style="text-align: center">
+                                    <label>
+                                        <select class="form-control" id="tracking_DepartmentId"
+                                                name="RegisterDepartment" onchange="loadRole()">
+                                            <option value="Default" name="RegisterDepartment">Select Department
+                                            </option>
+                                            <!-- departmentDict stores the value of department searchDepartment() method -->
+                                            {% for i in departmentDict %}
+                                                <option value="{{ i.departmentId }}"
+                                                        name="RegisterDepartment">{{ i.departmentName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="text-align: center">
+                                    <label>
+                                        <select class="form-control" name="RegisterRole" id="tracking_RoleId">
+                                            
+                                        </select>
+                                    </label>
+                                </div>
+                                        <div class="form-group text-center m-t-40" style="width: 20%;margin-left: 40%">
+                                            <div class="col-xs-12">
+                                                <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" name="Submit" type="button" onclick="loadTrackingData()">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    
+                                    <table id="trackingtable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                                 colspan="1" aria-label="Name: activate to sort column descending"
-                                                aria-sort="ascending" style="width: 146px;">Complain Subject
+                                                aria-sort="ascending" style="width: 146px;">Name
                                             </th>
                                             <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                                aria-label="Description: activate to sort column ascending"
-                                                style="width: 109px;">Complain Description
+                                                aria-label="Department: activate to sort column ascending"
+                                                style="width: 109px;">Department
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" aria-label="From: activate to sort column ascending"
-                                                style="width: 44px;">Reply From
+                                                colspan="1" aria-label="Role: activate to sort column ascending"
+                                                style="width: 44px;">Role
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" aria-label="Date: activate to sort column ascending"
-                                                style="width: 95px;">Complain Reply
+                                                colspan="1" aria-label="Place: activate to sort column ascending"
+                                                style="width: 95px;">Place
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                                                 colspan="1" aria-label="Time: activate to sort column ascending"
-                                                style="width: 95px;">Complain Status
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" style="width: 86px;">Action
+                                                style="width: 95px;">Time
                                             </th>
                                         </tr>
 
                                         </thead>
 
-                                        <tbody>
-                                        {% for i in complainDict %}
-                                            <tr>
-                                                <td>{{ i.complainSubject }}</td>
-                                                <td>{{ i.complainDescription }}</td>
-                                                <td>{{ i.loginEmail }}</td>
-                                                <td>{{ i.complainReply }}</td>
-                                                <td>{{ i.complainStatus }}</td>
-                                                <td>
-                                                    <div style="float : left" >
-                                                    <form action="/deleteComplain" method="post">
-                                                        <input type="hidden" name="ComplainId"
-                                                               value="{{ i.complainId }}">
-                                                        <input type="submit" name="ComplainSubmit" class="btn-danger btn-circle btn-sm" value="Delete">
-                                                    </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
+                                        <tbody  id="table_body" >
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- End Grid Style 1-->
 
@@ -162,6 +178,91 @@
 <script src="../../static/userResources/js/gmap.js"></script>
 <script src="../../static/userResources/js/jquery.prettyPhoto.js"></script>
 <script src="../../static/userResources/js/common.js"></script>
+        <script type="text/javascript">
+
+        function loadRole() {
+
+            var tracking_DepartmentId = document.getElementById("tracking_DepartmentId");
+
+            var tracking_RoleId = document.getElementById("tracking_RoleId");
+
+            tracking_RoleId.innerHTML = "";
+            var ajax = new XMLHttpRequest();
+
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    for (var i = 0; i < jsn.length; i++) {
+
+                        var option = document.createElement("option");
+
+                        option.value = jsn[i].roleId;
+                        option.text = jsn[i].roleName;
+
+                        tracking_RoleId.options.add(option);
+                    }
+                }
+
+            }
+            ajax.open("get", "/ajaxRoleTracking?tracking_DepartmentId='" + tracking_DepartmentId.value + "'", true);
+
+            ajax.send();
+
+
+        }
+    </script>
+	<script type="text/javascript">
+
+    	function loadTrackingData() {
+
+
+
+        	var tracking_RoleId = document.getElementById("tracking_RoleId");
+
+        	var tableBody=document.getElementById("table_body")
+        	tableBody.innerHTML="";
+
+        	var ajax = new XMLHttpRequest();
+        	ajax.onreadystatechange = function () {
+
+            	if (ajax.readyState == 4) {
+
+                
+
+                	var jsn = JSON.parse(ajax.responseText);
+
+                	for (var i = 0; i < jsn.length; i++) {
+
+
+                	
+
+                    	var r = tableBody.insertRow(-1);
+
+                    	var p = r.insertCell(0);
+                    	var q =r.insertCell(1);            
+                    	var s=r.insertCell(2);
+                    	var t=r.insertCell(3);
+                    	var u=r.insertCell(4)
+                   
+                    	r.value=p.innerHTML=jsn[i]['registerFirstName']+"  "+jsn[i]['registerLastName'];
+                    	r.value=q.innerHTML=jsn[i]['departmentName'];
+                    	r.value=s.innerHTML=jsn[i]['roleName'];
+                    	r.value=t.innerHTML=jsn[i]['trackingPlace'];
+                    	r.value=u.innerHTML=jsn[i]['trackingTime'];
+
+
+                	}
+            	}
+        	}
+
+        	ajax.open("get", "/ajaxLoadTracking?tracking_RoleId="+tracking_RoleId.value, true);
+        	ajax.send();
+    	}
+	</script>
 
 </body>
 </html>

@@ -37,14 +37,14 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="page-title">
-                    <h2 class="mb-0 text-white">Complain Data</h2>
+                    <h2 class="mb-0 text-white">Attendance Data</h2>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <ol class="breadcrumb text-left text-md-right mb-0 pl-0">
                     <li class="breadcrumb-item d-inline-block float-none"><a href="/loadIndex">Home</a></li>
-                    <li class="breadcrumb-item d-inline-block float-none"><a href="#">Manage Complain</a></li>
-                    <li class="breadcrumb-item d-inline-block float-none active">View Complain</li>
+                    <li class="breadcrumb-item d-inline-block float-none"><a href="#">Manage Attendance</a></li>
+                    <li class="breadcrumb-item d-inline-block float-none active">View Attendance</li>
                 </ol>
             </div>
         </div>
@@ -56,7 +56,7 @@
 <section class="wow fadeInUp">
     <div class="container">
         <div class="page-header-title">
-            <h4 class="page-title">Complain</h4>
+            <h4 class="page-title">Attendance</h4>
         </div>
     </div>
 
@@ -66,9 +66,11 @@
 
             <div class="row">
                 <div class="col-md-12">
+                <p style="position: absolute;right: 95px">Date:{{ dateDict }}</p>
                     <div class="panel panel-primary">
                         <div class="panel-body">
-                            <h4 class="m-b-30 m-t-0">Complain Data</h4>
+
+                            <h4 class="m-b-30 m-t-0">Attendance Data</h4>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -76,18 +78,18 @@
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" aria-label="Name: activate to sort column descending"
-                                                aria-sort="ascending" style="width: 146px;">Complain Subject
+                                                colspan="1" aria-label="Date: activate to sort column descending"
+                                                aria-sort="ascending" style="width: 146px;">Attendance Date
                                             </th>
                                             <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                                aria-label="Description: activate to sort column ascending"
-                                                style="width: 109px;">Complain Description
+                                                aria-label="Time: activate to sort column ascending"
+                                                style="width: 109px;">Entry Time
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" aria-label="From: activate to sort column ascending"
-                                                style="width: 44px;">Reply From
+                                                colspan="1" aria-label="Status: activate to sort column ascending"
+                                                style="width: 44px;">Status
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                            <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                                                 colspan="1" aria-label="Date: activate to sort column ascending"
                                                 style="width: 95px;">Complain Reply
                                             </th>
@@ -97,30 +99,30 @@
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                                                 colspan="1" style="width: 86px;">Action
-                                            </th>
+                                            </th>-->
                                         </tr>
 
                                         </thead>
 
+
                                         <tbody>
-                                        {% for i in complainDict %}
+                                        {% if attendanceDict[0].attendanceStatus == 'absent' %}
+                                            {% for i in attendanceDict %}
                                             <tr>
-                                                <td>{{ i.complainSubject }}</td>
-                                                <td>{{ i.complainDescription }}</td>
-                                                <td>{{ i.loginEmail }}</td>
-                                                <td>{{ i.complainReply }}</td>
-                                                <td>{{ i.complainStatus }}</td>
-                                                <td>
-                                                    <div style="float : left" >
-                                                    <form action="/deleteComplain" method="post">
-                                                        <input type="hidden" name="ComplainId"
-                                                               value="{{ i.complainId }}">
-                                                        <input type="submit" name="ComplainSubmit" class="btn-danger btn-circle btn-sm" value="Delete">
-                                                    </form>
-                                                    </div>
-                                                </td>
+                                                <td>{{ i.attendanceDate }}</td>
+                                                <td>None</td>
+                                                <td>{{ i.attendanceStatus }}</td>
                                             </tr>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for i in attendanceDict %}
+                                                <tr>
+                                                    <td>{{ i.attendanceDate }}</td>
+                                                    <td>{{ i.attendanceTime }}</td>
+                                                    <td>{{ i.attendanceStatus }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% endif %}
                                         </tbody>
                                     </table>
                                 </div>
